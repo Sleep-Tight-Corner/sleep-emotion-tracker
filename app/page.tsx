@@ -98,11 +98,12 @@ type SleepLatencySegment = {
 };
 
 const STORAGE_KEY = "anshui-sleep-observer-v1";
-const APP_VERSION = "1.5.5";
+const APP_VERSION = "1.5.6";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const MAX_CHILDREN = 10;
 const MULTILINE_TEXT_LIMIT = 500;
 const CONTACT_EMAIL = "hello@sleeptightcorner.com";
+const SUPPORT_URL = "https://portaly.cc/sleeptight/support";
 const BUG_REPORT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
   "孩子睡眠與情緒觀察工具｜問題回報",
 )}&body=${encodeURIComponent(
@@ -2963,6 +2964,17 @@ function SettingsView({
             <p>遇到操作錯誤、畫面異常或有功能建議，都可以回報；免費使用也歡迎聯絡。</p>
             <div className="contact-actions">
               <a href={BUG_REPORT_MAILTO}>Email 問題回報</a>
+            </div>
+          </div>
+        </div>
+        <div className="setting-row support-setting">
+          <span className="setting-icon"><Heart size={20} /></span>
+          <div>
+            <strong>支持工具持續維護</strong>
+            <p>《孩子睡眠與情緒觀察工具》會持續免費提供。如果這份工具對你有幫助，也願意支持後續維護與改進，可以自由支持安睡角落。無論是否支持，都不影響任何功能。</p>
+            <p>自由支持不包含睡眠諮詢、個別問題回覆或其他服務。</p>
+            <div className="contact-actions">
+              <a href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">自由支持安睡角落</a>
             </div>
           </div>
         </div>
