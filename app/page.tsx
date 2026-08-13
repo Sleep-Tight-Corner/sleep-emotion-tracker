@@ -98,11 +98,11 @@ type SleepLatencySegment = {
 };
 
 const STORAGE_KEY = "anshui-sleep-observer-v1";
-const APP_VERSION = "1.5.4";
+const APP_VERSION = "1.5.5";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const MAX_CHILDREN = 10;
 const MULTILINE_TEXT_LIMIT = 500;
-const CONTACT_EMAIL = "sleeptightcorner@gmail.com";
+const CONTACT_EMAIL = "hello@sleeptightcorner.com";
 const BUG_REPORT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
   "孩子睡眠與情緒觀察工具｜問題回報",
 )}&body=${encodeURIComponent(
