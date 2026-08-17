@@ -15,7 +15,8 @@ declare global {
   }
 }
 
-const MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
+const MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-DPB9VJT5Y6";
 
 function isConfigured() {
   return /^G-[A-Z0-9]+$/.test(MEASUREMENT_ID);
