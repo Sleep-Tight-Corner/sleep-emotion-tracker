@@ -1,4 +1,4 @@
-const CACHE_NAME = "anshui-observer-v1.5.6";
+const CACHE_NAME = "anshui-observer-v1.6.0";
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, "");
 const withBasePath = (path) => `${BASE_PATH}${path}`;
 const APP_SHELL = [
