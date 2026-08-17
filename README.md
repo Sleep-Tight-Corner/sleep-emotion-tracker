@@ -7,8 +7,8 @@
 - 不需登入。
 - 使用者輸入的資料只儲存在目前裝置與瀏覽器的 `localStorage`。
 - 專案原始碼不包含使用者的孩子資料、紀錄或備份檔。
-- GA4 僅接收 `pwa_open`、`record_complete`、`analysis_view`、`data_export` 四種匿名功能事件，不附帶孩子或紀錄內容。
-- GA4 採無分析 Cookie 設定，並關閉 Google signals、廣告個人化、自動頁面瀏覽與加強型評估。
+- 本機版 PWA 不使用 Google Analytics 或其他第三方分析追蹤，也不設定分析 Cookie。
+- 不傳送孩子資料、紀錄內容或功能使用紀錄；安睡角落無法透過本工具查看使用者的裝置內資料。
 - 更換網域、瀏覽器或裝置前，請先在工具內下載「完整家庭備份」，再到新版本匯入。
 
 ## GitHub Pages

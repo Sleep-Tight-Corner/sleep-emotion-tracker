@@ -36,7 +36,6 @@ import {
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { trackAnonymousEvent } from "./anonymous-analytics";
 
 type RecordType =
   | "bed"
@@ -99,7 +98,7 @@ type SleepLatencySegment = {
 };
 
 const STORAGE_KEY = "anshui-sleep-observer-v1";
-const APP_VERSION = "1.6.0";
+const APP_VERSION = "1.6.1";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const MAX_CHILDREN = 10;
 const MULTILINE_TEXT_LIMIT = 500;
@@ -557,9 +556,6 @@ export default function HomePage() {
   }
 
   function changeTab(nextTab: Tab) {
-    if (nextTab === "analysis" && tab !== "analysis") {
-      trackAnonymousEvent("analysis_view");
-    }
     setTab(nextTab);
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -579,7 +575,6 @@ export default function HomePage() {
       at: new Date().toISOString(),
     };
     setData((old) => ({ ...old, records: [...old.records, record] }));
-    trackAnonymousEvent("record_complete");
     setToast({
       text: `已記錄 ${timeLabel(record.at)} ${recordMeta[type].label}`,
       undo: record,
@@ -612,7 +607,6 @@ export default function HomePage() {
           ? old.records.filter((record) => record.id !== existing.id)
           : old.records,
     }));
-    if (detail.trim()) trackAnonymousEvent("record_complete");
     setToast({ text: detail.trim() ? "日記已保存" : "日記內容已清除" });
   }
 
@@ -944,7 +938,6 @@ export default function HomePage() {
             }));
             setShowRecordForm(null);
             setEditingRecord(null);
-            trackAnonymousEvent("record_complete");
             setToast({ text: editingRecord ? "紀錄已更新" : "紀錄已新增" });
           }}
           onDelete={editingRecord ? deleteRecord : undefined}
@@ -2207,7 +2200,6 @@ function ExportView({
     document.body.appendChild(link);
     link.click();
     link.remove();
-    trackAnonymousEvent("data_export");
     window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
   }
 
@@ -2958,9 +2950,8 @@ function SettingsView({
               <summary>查看完整說明</summary>
               <ul>
                 <li>不需註冊帳號，安睡角落無法從其他裝置查看你輸入的紀錄。</li>
-                <li>工具會以不使用分析 Cookie 的方式，向 Google Analytics 傳送「開啟工具、完成紀錄、查看分析、匯出資料」四種匿名功能事件。</li>
-                <li>不會傳送孩子姓名、生日、睡眠或情緒內容、特殊事件、備註、日記、家長回應、備份檔及匯出內容。</li>
-                <li>已關閉 Google signals、廣告個人化、自動頁面瀏覽及加強型評估。</li>
+                <li>工具目前不使用 Google Analytics 或其他第三方分析追蹤，也不設定分析 Cookie。</li>
+                <li>不會傳送孩子姓名、生日、睡眠或情緒內容、特殊事件、備註、日記、家長回應、備份檔、匯出內容或功能使用紀錄。</li>
                 <li>清除瀏覽資料、更換裝置或移除 PWA，可能造成紀錄遺失；請定期下載完整家庭備份。</li>
                 <li>PDF、試算表與備份檔由你自行保管，是否分享由你決定。</li>
                 <li>若主動使用 Email 聯絡，訊息與聯絡資料會由電子郵件服務處理。</li>
